@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Mordida — Carta</title>
+<meta name="description" content="Carta oficial de La Mordida — Sabor que te atrapa, mordida que te queda. Popayán, Colombia.">
+
+<!--
+  ============================================================
+  CÓMO SUBIR TUS FOTOS — LÉEME
+  ============================================================
+  1. Crea una carpeta llamada "images" en el mismo lugar donde
+     guardes este archivo .html, con esta estructura:
+
+     images/
+       hamburguesas/
+         la-clasica.jpg
+         aloha.jpg
+         doble-impacto.jpg
+         triple-impacto.jpg
+         bacon-boom.jpg
+         la-mordida.jpg
+       hotdogs/
+         el-clasico.jpg
+         aloha-dog.jpg
+         bacon-dog.jpg
+         la-mordida-dog.jpg
+       infantil/
+         menu-infantil.jpg
+       marca/
+         mordi.png   (opcional: mascota)
+
+  2. Cada <img> de abajo ya tiene el src apuntando al nombre
+     correcto. Solo tienes que poner el archivo con ESE nombre
+     exacto dentro de la carpeta indicada.
+  3. Mientras no exista la foto, se mostrará automáticamente un
+     marcador de posición elegante con el nombre del archivo
+     esperado — así no se ve "roto".
+  4. Tamaño recomendado: fotos cuadradas 1000x1000px (o similar),
+     formato .jpg o .webp, buena luz, fondo oscuro o neutro para
+     que combinen con la carta.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ======================================================
+     TOKENS
+     ====================================================== */
+  :root{
+    --bg:#0b0908;
+    --bg-soft:#141110;
+    --card:#18140f;
+    --card-hover:#1f1912;
+    --line:rgba(240,166,63,.16);
+    --line-strong:rgba(240,166,63,.32);
+    --flame-1:#ff7a1f;
+    --flame-2:#c8420b;
+    --gold:#f0a63e;
+    --gold-soft:#caa25f;
+    --cream:#f7efdf;
+    --muted:#a99b87;
+    --muted-dim:#6f6355;
+    --kid-teal:#37b6a8;
+    --kid-pink:#e85d8a;
+    --kid-yellow:#f2c94c;
+    --shadow-glow:rgba(255,122,31,.22);
+    --radius:18px;
+    --maxw:1180px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:84px; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  h1,h2,h3,p{ margin:0; }
+
+  .container{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* subtle grain texture over everything */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ======================================================
+     NAV
+     ====================================================== */
+  .nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(11,9,8,.72);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .container{
+    display:flex; align-items:center; justify-content:space-between;
+    height:66px; gap:20px;
+  }
+  .nav-brand{
+    font-family:'Anton',sans-serif;
+    font-size:19px; letter-spacing:.5px;
+    background:linear-gradient(120deg,var(--flame-1),var(--gold));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    white-space:nowrap;
+  }
+  .nav-links{
+    display:flex; gap:6px;
+    overflow-x:auto; scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{
+    font-size:12.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); padding:9px 15px; border-radius:999px;
+    white-space:nowrap; border:1px solid transparent;
+    transition:color .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    color:var(--cream); border-color:var(--line-strong); background:rgba(240,166,63,.06);
+  }
+
+  /* ======================================================
+     HERO
+     ====================================================== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 18% 0%, rgba(255,122,31,.16), transparent 60%),
+      radial-gradient(ellipse 50% 45% at 100% 10%, rgba(200,66,11,.14), transparent 60%),
+      var(--bg-soft);
+    padding:96px 0 130px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero .eyebrow{ display:block; margin-bottom:22px; }
+  .wordmark{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    line-height:.86;
+    font-size:clamp(58px, 14vw, 148px);
+    color:var(--cream);
+    letter-spacing:1px;
+  }
+  .wordmark span{
+    display:block;
+    background:linear-gradient(120deg,var(--flame-1) 10%, var(--gold) 55%, var(--flame-2) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .tagline{
+    margin:26px auto 0;
+    max-width:460px;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(16px,2.4vw,21px);
+    color:var(--muted);
+    line-height:1.5;
+  }
+  .tagline strong{ color:var(--gold); font-weight:600; font-style:italic; }
+  .hero-cta{
+    margin-top:40px; display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(120deg,var(--flame-1),var(--flame-2));
+    color:#160b04; font-weight:700; font-size:14px; letter-spacing:.04em;
+    text-transform:uppercase; padding:15px 30px; border-radius:999px;
+    box-shadow:0 14px 34px -12px var(--shadow-glow);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .hero-cta:hover{ transform:translateY(-2px); box-shadow:0 18px 40px -10px var(--shadow-glow); }
+  .hero-cta svg{ width:15px; height:15px; }
+
+  /* floating embers */
+  .embers{ position:absolute; inset:0; pointer-events:none; }
+  .embers i{
+    position:absolute; bottom:-10px; border-radius:50%;
+    background:radial-gradient(circle, var(--gold), var(--flame-2) 70%, transparent 100%);
+    opacity:0; filter:blur(.3px);
+    animation:rise linear infinite;
+  }
+  .embers i:nth-child(1){ left:8%;  width:5px; height:5px; animation-duration:9s;  animation-delay:.2s; }
+  .embers i:nth-child(2){ left:22%; width:3px; height:3px; animation-duration:7s;  animation-delay:2s; }
+  .embers i:nth-child(3){ left:38%; width:6px; height:6px; animation-duration:11s; animation-delay:.8s; }
+  .embers i:nth-child(4){ left:57%; width:4px; height:4px; animation-duration:8s;  animation-delay:3.4s; }
+  .embers i:nth-child(5){ left:72%; width:3px; height:3px; animation-duration:10s; animation-delay:1.2s; }
+  .embers i:nth-child(6){ left:85%; width:5px; height:5px; animation-duration:7.5s;animation-delay:2.6s; }
+  .embers i:nth-child(7){ left:47%; width:3px; height:3px; animation-duration:12s; animation-delay:4s; }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0; }
+    12%{ opacity:.85; }
+    100%{ transform:translateY(-420px) translateX(18px); opacity:0; }
+  }
+  @media (prefers-reduced-motion:reduce){ .embers i{ animation:none; opacity:0; } }
+
+  /* scalloped "bite" strip separating hero from content — the brand's visual pun */
+  .bite-strip{
+    position:absolute; left:0; right:0; bottom:0; height:30px;
+    background-image:radial-gradient(circle at 15px 0, var(--bg) 15px, transparent 16px);
+    background-repeat:repeat-x; background-size:30px 30px;
+  }
+
+  /* ======================================================
+     SECTIONS
+     ====================================================== */
+  .menu-section{ padding:96px 0 20px; position:relative; }
+  .section-head{ margin-bottom:46px; }
+  .eyebrow{
+    font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  .section-head h2{
+    margin-top:10px;
+    font-family:'Fraunces',serif; font-weight:700; font-style:italic;
+    font-size:clamp(32px,5vw,52px);
+    color:var(--cream);
+  }
+  .section-rule{
+    margin-top:18px; width:64px; height:3px; border-radius:3px;
+    background:linear-gradient(90deg,var(--flame-1),var(--gold));
+  }
+
+  /* product grid */
+  .grid{
+    display:grid; gap:26px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  @media (max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:transform .35s ease, border-color .35s ease, background .35s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:var(--line-strong);
+    background:var(--card-hover);
+  }
+
+  .photo{
+    position:relative; aspect-ratio:1/1; background:#0f0c0a;
+    border-bottom:1px solid var(--line);
+  }
+  .photo img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    z-index:2;
+  }
+  .photo-ph{
+    position:absolute; inset:0; z-index:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,122,31,.10), transparent 55%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 14px);
+  }
+  .photo-ph .ico{ font-size:30px; opacity:.55; filter:grayscale(.2); }
+  .photo-ph span{
+    font-family:'Inter',sans-serif; font-size:10.5px; letter-spacing:.04em;
+    color:var(--muted-dim); background:rgba(0,0,0,.35);
+    padding:4px 9px; border-radius:999px; border:1px dashed var(--line-strong);
+  }
+
+  .card-body{ padding:20px 20px 22px; }
+  .title-row{ display:flex; align-items:baseline; gap:10px; }
+  .title-row h3{
+    font-family:'Fraunces',serif; font-weight:600; font-size:18px;
+    color:var(--cream); white-space:nowrap;
+  }
+  .leader{
+    flex:1; border-bottom:2px dotted var(--line-strong);
+    transform:translateY(-4px);
+  }
+  .price{
+    font-family:'Anton',sans-serif; font-size:16px; letter-spacing:.02em; color:var(--gold);
+    white-space:nowrap;
+  }
+  .desc{
+    margin-top:10px; font-size:13.5px; line-height:1.6; color:var(--muted);
+  }
+
+  /* signature / premium items — "la mordida" bite-mark treatment */
+  .signature{
+    margin-top:26px;
+    display:grid; grid-template-columns:280px 1fr; gap:0;
+    background:linear-gradient(155deg, var(--card), #1c150d);
+    border:1px solid var(--gold-soft);
+    border-radius:22px;
+    overflow:visible;
+    position:relative;
+    box-shadow:0 24px 50px -30px var(--shadow-glow);
+  }
+  @media (max-width:720px){ .signature{ grid-template-columns:1fr; } }
+
+  .signature .photo{ aspect-ratio:auto; height:100%; min-height:230px; border-bottom:none; border-radius:22px 0 0 22px; }
+  @media (max-width:720px){ .signature .photo{ border-radius:22px 22px 0 0; height:230px; } }
+
+  .signature .bite{ position:absolute; background:var(--bg); border-radius:50%; box-shadow:inset 0 3px 8px rgba(0,0,0,.55); z-index:5; }
+  .signature .bite--1{ width:38px; height:38px; top:-16px; right:54px; }
+  .signature .bite--2{ width:22px; height:22px; top:-9px; right:24px; }
+  .signature .bite--3{ width:13px; height:13px; top:3px; right:8px; }
+
+  .signature-body{ padding:28px 30px 30px; display:flex; flex-direction:column; justify-content:center; }
+  .badge{
+    align-self:flex-start;
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:#1a0f04; background:linear-gradient(120deg,var(--gold),var(--flame-1));
+    padding:6px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .signature-body .title-row h3{ font-size:26px; }
+  .signature-body .price{ font-size:22px; }
+  .signature-body .desc{ font-size:14.5px; }
+  .signature-extra{
+    margin-top:16px; display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:600; color:var(--gold-soft);
+    border-top:1px dashed var(--line-strong); padding-top:14px;
+  }
+
+  /* ======================================================
+     KIDS MENU
+     ====================================================== */
+  .kids{
+    margin-top:8px;
+    display:grid; grid-template-columns:260px 1fr; gap:0;
+    background:var(--card); border:1px solid var(--line); border-radius:22px;
+    overflow:hidden;
+  }
+  @media (max-width:720px){ .kids{ grid-template-columns:1fr; } }
+  .kids .photo{ aspect-ratio:auto; height:100%; min-height:220px; }
+  @media (max-width:720px){ .kids .photo{ height:200px; } }
+  .kids-body{ padding:28px 30px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+  .rainbow{ font-family:'Fraunces',serif; font-weight:700; font-style:italic; font-size:clamp(24px,4vw,34px); }
+  .rainbow span:nth-child(1){ color:var(--flame-1); }
+  .rainbow span:nth-child(2){ color:var(--kid-yellow); }
+  .rainbow span:nth-child(3){ color:var(--kid-teal); }
+  .rainbow span:nth-child(4){ color:var(--kid-pink); }
+  .rainbow span:nth-child(5){ color:var(--gold); }
+  .rainbow span:nth-child(6){ color:var(--cream); }
+  .kids-items{ display:flex; flex-direction:column; gap:9px; }
+  .kids-items li{ display:flex; align-items:center; gap:10px; font-size:14.5px; color:var(--muted); }
+  .kids-items li::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background:linear-gradient(120deg,var(--kid-teal),var(--kid-pink));
+    flex:none;
+  }
+  .kids-price{
+    align-self:flex-start; font-family:'Anton',sans-serif; font-size:22px; color:var(--gold);
+    background:rgba(240,166,63,.09); border:1px dashed var(--line-strong);
+    padding:8px 18px; border-radius:14px; margin-top:4px;
+  }
+
+  /* ======================================================
+     ADICIONALES
+     ====================================================== */
+  .addons{ display:flex; flex-direction:column; gap:2px; }
+  .addons-head, .addon-row{
+    display:grid; grid-template-columns:1fr 70px 70px; gap:14px; align-items:center;
+  }
+  .addons-head{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-dim);
+    padding:0 4px 12px; border-bottom:1px solid var(--line);
+  }
+  .addons-head span{ text-align:right; }
+  .addon-row{
+    padding:15px 4px; border-bottom:1px solid var(--line);
+  }
+  .addon-row:hover{ background:rgba(240,166,63,.04); }
+  .addon-name{ display:flex; align-items:baseline; gap:10px; font-size:14.5px; color:var(--cream); }
+  .addon-name .leader{ flex:1; }
+  .addon-row .val{ text-align:right; font-family:'Anton',sans-serif; font-size:14px; color:var(--gold); white-space:nowrap; }
+  .addon-row .val.none{ color:var(--muted-dim); font-family:'Inter',sans-serif; }
+
+  /* ======================================================
+     BEBIDAS
+     ====================================================== */
+  .drinks{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:640px){ .drinks{ grid-template-columns:1fr; } }
+  .drink{
+    display:flex; align-items:center; gap:14px;
+    background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .drink:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
+  .drink .ico{ font-size:22px; }
+  .drink-info{ display:flex; flex-direction:column; gap:2px; }
+  .drink-info b{ font-size:14px; font-weight:600; }
+  .drink-info span{ font-family:'Anton',sans-serif; font-size:13px; color:var(--gold); }
+
+  /* ======================================================
+     FOOTER
+     ====================================================== */
+  footer{
+    margin-top:110px; position:relative;
+    background:var(--bg-soft); border-top:1px solid var(--line);
+    padding:64px 0 40px; text-align:center;
+  }
+  .foot-eyebrow{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-soft); }
+  .foot-title{
+    margin-top:12px; font-family:'Fraunces',serif; font-weight:600; font-style:italic;
+    font-size:clamp(20px,3vw,28px); color:var(--cream); max-width:520px; margin-left:auto; margin-right:auto;
+  }
+  .foot-title strong{ color:var(--flame-1); font-style:normal; }
+  .socials{ margin-top:26px; display:flex; justify-content:center; gap:14px; }
+  .socials a{
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-strong); transition:background .3s ease, transform .3s ease, border-color .3s ease;
+  }
+  .socials a:hover{ background:linear-gradient(120deg,var(--flame-1),var(--gold)); border-color:transparent; transform:translateY(-3px); }
+  .socials svg{ width:18px; height:18px; }
+  .handle{ margin-top:16px; font-family:'Anton',sans-serif; font-size:15px; letter-spacing:.03em; color:var(--gold); }
+  .foot-loc{
+    margin-top:34px; display:flex; align-items:center; justify-content:center; gap:8px;
+    font-size:13px; color:var(--muted);
+  }
+  .foot-loc svg{ width:15px; height:15px; color:var(--flame-1); }
+  .foot-brand{ margin-top:6px; font-family:'Anton',sans-serif; font-size:20px; color:var(--cream); }
+
+  /* fade-up on scroll (pure CSS, progressive enhancement) */
+  @media (prefers-reduced-motion:no-preference){
+    .menu-section, footer{ animation:fadeUp .8s ease both; }
+  }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="container">
+    <span class="nav-brand">LA MORDIDA</span>
+    <div class="nav-links">
+      <a href="#hamburguesas">Hamburguesas</a>
+      <a href="#hotdogs">Hot Dogs</a>
+      <a href="#infantil">Infantil</a>
+      <a href="#adicionales">Adicionales</a>
+      <a href="#bebidas">Bebidas</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="embers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="container">
+    <span class="eyebrow">Popayán · Colombia</span>
+    <h1 class="wordmark">LA<span>MORDIDA</span></h1>
+    <p class="tagline">Sabor que te atrapa,<br><strong>mordida que te queda.</strong></p>
+    <a href="#hamburguesas" class="hero-cta">
+      Ver la carta
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="bite-strip" aria-hidden="true"></div>
+</header>
+
+<main>
+
+  <!-- ============ HAMBURGUESAS ============ -->
+  <section id="hamburguesas" class="menu-section container">
+    <div class="section-head">
+      <span class="eyebrow">A la parrilla</span>
+      <h2>Hamburguesas</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hamburguesas/la-clasica.jpg -->
+          <img src="images/hamburguesas/la-clasica.jpg" alt="La Clásica" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🍔</span><span>la-clasica.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>La Clásica</h3><span class="leader"></span><span class="price">$20.000</span></div>
+          <p class="desc">Pan brioche, carne 100% artesanal, cebolla caramelizada, jamón, queso fundido, lechuga, tomate y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hamburguesas/aloha.jpg -->
+          <img src="images/hamburguesas/aloha.jpg" alt="Aloha" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🍔</span><span>aloha.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Aloha</h3><span class="leader"></span><span class="price">$22.000</span></div>
+          <p class="desc">Pan brioche, carne 100% artesanal, cebolla caramelizada, jamón, queso fundido, lechuga, tomate, piña asada y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hamburguesas/doble-impacto.jpg -->
+          <img src="images/hamburguesas/doble-impacto.jpg" alt="Doble Impacto" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🍔</span><span>doble-impacto.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Doble Impacto</h3><span class="leader"></span><span class="price">$24.000</span></div>
+          <p class="desc">Pan brioche, doble carne 100% artesanal, cebolla caramelizada, jamón, queso fundido, lechuga, tomate y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hamburguesas/triple-impacto.jpg -->
+          <img src="images/hamburguesas/triple-impacto.jpg" alt="Triple Impacto" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🍔</span><span>triple-impacto.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Triple Impacto</h3><span class="leader"></span><span class="price">$28.000</span></div>
+          <p class="desc">Pan brioche, triple carne 100% artesanal, cebolla caramelizada, jamón, queso fundido, lechuga, tomate y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hamburguesas/bacon-boom.jpg -->
+          <img src="images/hamburguesas/bacon-boom.jpg" alt="Bacon Boom" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🍔</span><span>bacon-boom.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Bacon Boom</h3><span class="leader"></span><span class="price">$26.000</span></div>
+          <p class="desc">Pan brioche, carne 100% artesanal, cebolla caramelizada, jamón, queso fundido, tocineta, cebolla crispy, lechuga, tomate y aderezo de la casa.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ====== ITEM ESTRELLA — LA MORDIDA ====== -->
+    <article class="signature">
+      <span class="bite bite--1"></span><span class="bite bite--2"></span><span class="bite bite--3"></span>
+      <div class="photo">
+        <!-- 📸 Sube tu foto como: images/hamburguesas/la-mordida.jpg -->
+        <img src="images/hamburguesas/la-mordida.jpg" alt="La Mordida" onerror="this.remove()">
+        <div class="photo-ph"><span class="ico">👑</span><span>la-mordida.jpg</span></div>
+      </div>
+      <div class="signature-body">
+        <span class="badge">👑 Firma de la casa</span>
+        <div class="title-row"><h3>La Mordida</h3><span class="leader"></span><span class="price">$32.000</span></div>
+        <p class="desc">Pan pretzel, carne 100% artesanal, cebolla crispy o caramelizada (a elección), jamón, queso fundido, queso doble crema, queso mozzarella, tocineta, chorizo, lechuga, tomate y aderezo de la casa.</p>
+        <span class="signature-extra">+ Papitas a la francesa incluidas</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ HOT DOGS ============ -->
+  <section id="hotdogs" class="menu-section container">
+    <div class="section-head">
+      <span class="eyebrow">Directo al pan</span>
+      <h2>Hot Dogs</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hotdogs/el-clasico.jpg -->
+          <img src="images/hotdogs/el-clasico.jpg" alt="El Clásico" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🌭</span><span>el-clasico.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>El Clásico</h3><span class="leader"></span><span class="price">$18.000</span></div>
+          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, ripio de papa y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hotdogs/aloha-dog.jpg -->
+          <img src="images/hotdogs/aloha-dog.jpg" alt="Aloha Dog" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🌭</span><span>aloha-dog.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Aloha Dog</h3><span class="leader"></span><span class="price">$20.000</span></div>
+          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, ripio de papa, piña asada y aderezo de la casa.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <!-- 📸 Sube tu foto como: images/hotdogs/bacon-dog.jpg -->
+          <img src="images/hotdogs/bacon-dog.jpg" alt="Bacon Dog" onerror="this.remove()">
+          <div class="photo-ph"><span class="ico">🌭</span><span>bacon-dog.jpg</span></div>
+        </div>
+        <div class="card-body">
+          <div class="title-row"><h3>Bacon Dog</h3><span class="leader"></span><span class="price">$22.000</span></div>
+          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, tocineta, ripio de papa y aderezo de la casa.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ====== ITEM ESTRELLA — LA MORDIDA DOG ====== -->
+    <article class="signature">
+      <span class="bite bite--1"></span><span class="bite bite--2"></span><span class="bite bite--3"></span>
+      <div class="photo">
+        <!-- 📸 Sube tu foto como: images/hotdogs/la-mordida-dog.jpg -->
+        <img src="images/hotdogs/la-mordida-dog.jpg" alt="La Mordida Dog" onerror="this.remove()">
+        <div class="photo-ph"><span class="ico">👑</span><span>la-mordida-dog.jpg</span></div>
+      </div>
+      <div class="signature-body">
+        <span class="badge">👑 Firma de la casa</span>
+        <div class="title-row"><h3>La Mordida Dog</h3><span class="leader"></span><span class="price">$26.000</span></div>
+        <p class="desc">Pan brioche, salchicha americana envuelta en tocineta, jamón, queso fundido, queso doble crema, queso mozzarella, cebolla crispy, huevo de codorniz, ripio de papa y aderezo de la casa.</p>
+        <span class="signature-extra">+ Papitas a la francesa incluidas</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ INFANTIL ============ -->
+  <section id="infantil" class="menu-section container">
+    <div class="section-head">
+      <span class="eyebrow">Para los pequeños</span>
+      <h2>Menú Infantil</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="kids">
+      <div class="photo">
+        <!-- 📸 Sube tu foto como: images/infantil/menu-infantil.jpg -->
+        <img src="images/infantil/menu-infantil.jpg" alt="Menú Infantil" onerror="this.remove()">
+        <div class="photo-ph"><span class="ico">🎈</span><span>menu-infantil.jpg</span></div>
+      </div>
+      <div class="kids-body">
+        <h3 class="rainbow"><span>M</span><span>e</span><span>n</span><span>ú </span><span>I</span><span>nf</span><span>antil</span></h3>
+        <ul class="kids-items">
+          <li>Miniclásica</li>
+          <li>Papas a la francesa</li>
+          <li>Huevo sorpresa</li>
+          <li>Juguito Hit de caja</li>
+        </ul>
+        <span class="kids-price">$33.000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ADICIONALES ============ -->
+  <section id="adicionales" class="menu-section container">
+    <div class="section-head">
+      <span class="eyebrow">Personaliza tu pedido</span>
+      <h2>Adicionales</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="addons">
+      <div class="addons-head"><span>&nbsp;</span><span>x1</span><span>x2</span></div>
+
+      <div class="addon-row">
+        <div class="addon-name">Carne 100% artesanal extra<span class="leader"></span></div>
+        <span class="val">$5.000</span><span class="val">$8.000</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Tocineta<span class="leader"></span></div>
+        <span class="val">$2.000</span><span class="val">$3.000</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Queso doble crema<span class="leader"></span></div>
+        <span class="val">$1.000</span><span class="val none">—</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Queso cheddar<span class="leader"></span></div>
+        <span class="val">$1.500</span><span class="val none">—</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Jamón<span class="leader"></span></div>
+        <span class="val">$1.500</span><span class="val none">—</span>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Papas a la francesa (porción)<span class="leader"></span></div>
+        <span class="val">$5.000</span><span class="val none">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEBIDAS ============ -->
+  <section id="bebidas" class="menu-section container">
+    <div class="section-head">
+      <span class="eyebrow">Para acompañar</span>
+      <h2>Bebidas</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="drinks">
+      <div class="drink"><span class="ico">🥤</span><div class="drink-info"><b>Coca-Cola 250 ml</b><span>$3.000</span></div></div>
+      <div class="drink"><span class="ico">🥤</span><div class="drink-info"><b>Postobón 250 ml</b><span>$3.000</span></div></div>
+      <div class="drink"><span class="ico">💧</span><div class="drink-info"><b>Agua 300 ml</b><span>$2.000</span></div></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <span class="foot-eyebrow">Síguenos</span>
+    <p class="foot-title">Hechas con <strong>pasión</strong>, para gente como tú.</p>
+
+    <div class="socials">
+      <a href="https://instagram.com/lamordidapopayan" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://facebook.com/lamordidapopayan" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h-2a5 5 0 0 0-5 5v2H6v4h2v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@lamordidapopayan" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4c.7 2.3 2.6 4 5 4.2"/></svg>
+      </a>
+    </div>
+
+    <p class="handle">@lamordidapopayan</p>
+
+    <div class="foot-loc">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+      <span>Popayán, Cauca — Colombia</span>
+    </div>
+    <p class="foot-brand">LA MORDIDA</p>
+  </div>
+</footer>
+
+</body>
+</html>

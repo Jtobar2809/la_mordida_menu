@@ -21,11 +21,6 @@
          triple-impacto.jpg
          bacon-boom.jpg
          la-mordida.jpg
-       hotdogs/
-         el-clasico.jpg
-         aloha-dog.jpg
-         bacon-dog.jpg
-         la-mordida-dog.jpg
        infantil/
          menu-infantil.jpg
        marca/
@@ -45,7 +40,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;70[...]
 
 <style>
   /* ======================================================
@@ -98,7 +93,7 @@
   .grain{
     position:fixed; inset:0; pointer-events:none; z-index:999;
     opacity:.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' s[...]
   }
 
   /* ======================================================
@@ -450,7 +445,6 @@
     <span class="nav-brand">LA MORDIDA</span>
     <div class="nav-links">
       <a href="#hamburguesas">Hamburguesas</a>
-      <a href="#hotdogs">Hot Dogs</a>
       <a href="#infantil">Infantil</a>
       <a href="#adicionales">Adicionales</a>
       <a href="#bebidas">Bebidas</a>
@@ -560,71 +554,6 @@
         <span class="badge">👑 Firma de la casa</span>
         <div class="title-row"><h3>La Mordida</h3><span class="leader"></span><span class="price">$34.000</span></div>
         <p class="desc">Pan pretzel, carne 100% artesanal, cebolla crispy o caramelizada (a elección), jamón, queso fundido, queso doble crema, queso mozzarella, tocineta, chorizo, lechuga, tomate y aderezo de la casa.</p>
-        <span class="signature-extra">+ Papitas a la francesa incluidas</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- ============ HOT DOGS ============ -->
-  <section id="hotdogs" class="menu-section container">
-    <div class="section-head">
-      <span class="eyebrow">Directo al pan</span>
-      <h2>Hot Dogs</h2>
-      <div class="section-rule"></div>
-    </div>
-
-    <div class="grid">
-
-      <article class="card">
-        <div class="photo">
-          <!-- 📸 Sube tu foto como: images/hotdogs/el-clasico.jpg -->
-          <img src="hotdogs/el-clasico.jpg" alt="El Clásico" onerror="this.remove()">
-          <div class="photo-ph"><span class="ico">🌭</span><span>el-clasico.jpg</span></div>
-        </div>
-        <div class="card-body">
-          <div class="title-row"><h3>El Clásico</h3><span class="leader"></span><span class="price">$18.000</span></div>
-          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, ripio de papa y aderezo de la casa.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="photo">
-          <!-- 📸 Sube tu foto como: images/hotdogs/aloha-dog.jpg -->
-          <img src="hotdogs/aloha-dog.jpg" alt="Aloha Dog" onerror="this.remove()">
-          <div class="photo-ph"><span class="ico">🌭</span><span>aloha-dog.jpg</span></div>
-        </div>
-        <div class="card-body">
-          <div class="title-row"><h3>Aloha Dog</h3><span class="leader"></span><span class="price">$20.000</span></div>
-          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, ripio de papa, piña asada y aderezo de la casa.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="photo">
-          <!-- 📸 Sube tu foto como: images/hotdogs/bacon-dog.jpg -->
-          <img src="hotdogs/bacon-dog.jpg" alt="Bacon Dog" onerror="this.remove()">
-          <div class="photo-ph"><span class="ico">🌭</span><span>bacon-dog.jpg</span></div>
-        </div>
-        <div class="card-body">
-          <div class="title-row"><h3>Bacon Dog</h3><span class="leader"></span><span class="price">$22.000</span></div>
-          <p class="desc">Pan brioche, salchicha americana, jamón, queso fundido, tocineta, ripio de papa y aderezo de la casa.</p>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- ====== ITEM ESTRELLA — LA MORDIDA DOG ====== -->
-    <article class="signature">
-      <span class="bite bite--1"></span><span class="bite bite--2"></span><span class="bite bite--3"></span>
-      <div class="photo">
-        <!-- 📸 Sube tu foto como: images/hotdogs/la-mordida-dog.jpg -->
-        <img src="hotdogs/la-mordida-dog.jpg" alt="La Mordida Dog" onerror="this.remove()">
-        <div class="photo-ph"><span class="ico">👑</span><span>la-mordida-dog.jpg</span></div>
-      </div>
-      <div class="signature-body">
-        <span class="badge">👑 Firma de la casa</span>
-        <div class="title-row"><h3>La Mordida Dog</h3><span class="leader"></span><span class="price">$26.000</span></div>
-        <p class="desc">Pan brioche, salchicha americana envuelta en tocineta, jamón, queso fundido, queso doble crema, queso mozzarella, cebolla crispy, ripio de papa y aderezo de la casa.</p>
         <span class="signature-extra">+ Papitas a la francesa incluidas</span>
       </div>
     </article>
